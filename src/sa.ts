@@ -5,7 +5,7 @@ import { alertPage, sleep} from "./utils";
 //NEED TO CHANGE THESE TWO LINES FOR THE BOT TO WORK
 /***************************************************************************************************************************************************/
 const paused = true
-const extensionPath = "C:\\Users\\YOUR_PC_NAME\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\bhhhlbepdkbapadjdnnojkbgioiodbic\\1.52.0_0";
+const extensionPath = "C:\\Users\\Your_User\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\bhhhlbepdkbapadjdnnojkbgioiodbic\\1.52.0_0";
 /***************************************************************************************************************************************************/
 
 (async () => {
@@ -51,7 +51,7 @@ const extensionPath = "C:\\Users\\YOUR_PC_NAME\\AppData\\Local\\Google\\Chrome\\
         if(!paused){
           await playGame.startPlaying();
         }
-       
+
       }
     } catch (e) {
       console.log(e);
@@ -78,20 +78,20 @@ async function initializeGame(page: Page) {
   //Launch Game
   await page.mouse.click(centerX, centerY + 210);
   await sleep(2000);
- 
+
   //Select Wallet Button
   await page.mouse.click(centerX, centerY + 100);
-  await sleep(5000);
+  await sleep(2000);
 
   //Select Solflare Wallet
   await page.mouse.click(centerX, centerY - 50);
-  await sleep(5000);
+  await sleep(2000);
 
   //Connect button
   await page.mouse.click(centerX, centerY + 210);
-  await sleep(8000);
+  await sleep(3000);
 
   //Play Game
   await page.mouse.click(centerX, centerY + 100);
-  await sleep(4000);
+  await sleep(1);
 }

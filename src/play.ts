@@ -20,6 +20,9 @@ export default class PlayGame {
   scanButtonX: number;
   scanButtonY: number;
 
+  allScanButtonX: number;
+  allScanButtonY: number;
+
   constructor(page: Page, width: number, height: number) {
     this.page = page;
     this.width = width;
@@ -29,8 +32,8 @@ export default class PlayGame {
     this.centerX = this.width / 2;
     this.centerY = this.height / 2;
 
-    this.firstFleetShipX = this.centerX + 600;
-    this.firstFleetShipY = this.centerY +  390;
+    this.firstFleetShipX = this.centerX + 550;
+    this.firstFleetShipY = this.centerY +  290;
 
     this.manageFleetX = this.centerX + 550;
     this.manageFleetY = this.centerY + 300;
@@ -40,24 +43,27 @@ export default class PlayGame {
 
     this.scanButtonX = this.centerX - 330;
     this.scanButtonY = this.centerY + 210;
+
+    this.allScanButtonX = this.centerX + 560;
+    this.allScanButtonY = this.centerY +  340;
   }
 
   async startPlaying(){
+    await installMouseHelper(this.page);
     await this.page.mouse.wheel({deltaY: 225})
     await sleep(1000);
     await this.page.mouse.click(this.firstFleetShipX -50, this.firstFleetShipY);
-    await sleep(9000);
-    await this.page.mouse.click(this.manageFleetX, this.manageFleetY);
-    await sleep(2000);
-    await this.page.mouse.click(this.SectorScanX, this.SectorScanY);
-    await sleep(1500);
-      for( let i = 0; i < 30; i++){
-        await this.scan(this.page, this.firstFleetShipY);
+    //console.log(this.firstFleetShipX -50, this.firstFleetShipY);
+    await sleep(1000);
+      for( let i = 0; i < 40000; i++){
+        console.log("Scan ", i);
+        await this.scan(this.page, this.allScanButtonX, this.allScanButtonY);
     }
   }
 
-  private async scan(page: Page, y) {
-    await page.mouse.click(this.scanButtonX, this.scanButtonY);
-    await sleep(116000);
+  private async scan(page: Page, X, Y) {
+    //console.log(X, Y);
+    await page.mouse.click(X, Y);
+    await sleep(70000);
   }
 }
